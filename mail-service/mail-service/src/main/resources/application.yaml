@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: mail-service
+
+  mail:
+    host: sandbox.smtp.mailtrap.io
+    port: 2525
+    username: 2b7f9587bde829
+    password : cf0dce5507b34f
+  rabbitmq:
+    host: rabbitmq
+

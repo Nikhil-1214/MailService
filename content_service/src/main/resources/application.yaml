@@ -1,0 +1,15 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: content_service
+  datasource:
+    url: jdbc:mysql://mysql-content:3306/content_db
+    username: root
+    password: nikhil
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true

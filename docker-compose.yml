@@ -1,0 +1,88 @@
+services:
+  rabbitmq:
+    image: rabbitmq:3-management
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    # ADD THIS: This forces other services to wait until RabbitMQ is fully ready
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "check_port_connectivity"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+
+  mysql-user:
+    image: mysql:8.0
+    container_name: mysql-user
+    environment:
+      - MYSQL_DATABASE=user_db
+      - MYSQL_ROOT_PASSWORD=nikhil
+    ports:
+      - "3310:3306"
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-pnikhil" ]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  user-service:
+    build:
+      context: ./user_service
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_RABBITMQ_HOST=rabbitmq
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql-user:3306/user_db
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=nikhil
+    depends_on:
+      # Use service_healthy to ensure DB and Rabbit are truly ready
+      rabbitmq:
+        condition: service_healthy
+      mysql-user:
+        condition: service_healthy
+
+  mysql-content:
+    image: mysql:8.0
+    container_name: mysql-content
+    environment:
+      - MYSQL_DATABASE=content_db
+      - MYSQL_ROOT_PASSWORD=nikhil
+    ports:
+      - "3309:3306"
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-pnikhil" ]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  content-service:
+    build:
+      context: ./content_service
+      dockerfile: Dockerfile
+    ports:
+      - "8081:8081"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql-content:3306/content_db
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=nikhil
+    depends_on:
+      mysql-content:
+        condition: service_healthy
+
+  mail-service:
+    build:
+      context: .
+      dockerfile: mail-service/Dockerfile
+    environment:
+      - MAIL_HOST=sandbox.smtp.mailtrap.io
+      - MAIL_PORT=2525
+      - MAIL_USERNAME=2b7f9587bde829
+      - MAIL_PASSWORD=cf0dce5507b34f
+      - MAIL_PROPERTIES_MAIL_SMTP_AUTH=true
+      - MAIL_PROPERTIES_MAIL_SMTP_STARTTLS_ENABLE=true
+      - SPRING_RABBITMQ_HOST=rabbitmq
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
