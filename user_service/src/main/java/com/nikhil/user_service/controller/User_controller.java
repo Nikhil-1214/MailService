@@ -1,4 +1,4 @@
-package com.nikhil.user_service.contoller;
+package com.nikhil.user_service.controller;
 
 import com.nikhil.user_service.UserDTO;
 import com.nikhil.user_service.service.User_service;

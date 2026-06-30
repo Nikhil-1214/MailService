@@ -11,7 +11,6 @@ public class RabbitConfig {
 
     @Bean
     public MessageConverter jsonMessageConverter() {
-        // This is the "Magic" that fixes your MessageConversionException
         return new Jackson2JsonMessageConverter();
     }
 
