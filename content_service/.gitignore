@@ -1,10 +1,20 @@
-HELP.md
-target/
+# --- Maven & Compiled Files (Microservice Safe) ---
+**/target/
+*.class
+*.jar
+*.war
 .mvn/wrapper/maven-wrapper.jar
-!**/src/main/**/target/
-!**/src/test/**/target/
 
-### STS ###
+# --- Secrets & Environment Variables ---
+.env
+.env.*
+
+# --- IDEs (Combined from your Spring Initializr list) ---
+.idea
+*.iws
+*.iml
+*.ipr
+.vscode/
 .apt_generated
 .classpath
 .factorypath
@@ -13,13 +23,7 @@ target/
 .springBeans
 .sts4-cache
 
-### IntelliJ IDEA ###
-.idea
-*.iws
-*.iml
-*.ipr
-
-### NetBeans ###
+# --- NetBeans ---
 /nbproject/private/
 /nbbuild/
 /dist/
@@ -29,5 +33,7 @@ build/
 !**/src/main/**/build/
 !**/src/test/**/build/
 
-### VS Code ###
-.vscode/
+# --- Misc ---
+HELP.md
+*.log
+.DS_Store

@@ -2,7 +2,7 @@ spring:
   application:
     name: user_service
   datasource:
-    url: jdbc:mysql://mysql-user:3306/user_db
+    url: jdbc:mysql://localhost:3310/user_db
     username: root
     password: nikhil
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -10,3 +10,21 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: your_google_client_id_here
+            client-secret: your_google_client_secret_here
+            scope:
+              - email
+              - profile
+
+rabbitmq:
+  exchange:
+    user: user-exchange
+  queue:
+    email: emailQueue
+  routing-key:
+    user: user.registered

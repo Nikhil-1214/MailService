@@ -4,7 +4,6 @@ services:
     ports:
       - "5672:5672"
       - "15672:15672"
-    # ADD THIS: This forces other services to wait until RabbitMQ is fully ready
     healthcheck:
       test: ["CMD", "rabbitmq-diagnostics", "check_port_connectivity"]
       interval: 5s
@@ -37,7 +36,6 @@ services:
       - SPRING_DATASOURCE_USERNAME=root
       - SPRING_DATASOURCE_PASSWORD=nikhil
     depends_on:
-      # Use service_healthy to ensure DB and Rabbit are truly ready
       rabbitmq:
         condition: service_healthy
       mysql-user:
@@ -51,6 +49,8 @@ services:
       - MYSQL_ROOT_PASSWORD=nikhil
     ports:
       - "3309:3306"
+    volumes:
+      - ./init-content.sql:/docker-entrypoint-initdb.d/init-content.sql
     healthcheck:
       test: [ "CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-pnikhil" ]
       interval: 5s
@@ -72,17 +72,21 @@ services:
         condition: service_healthy
 
   mail-service:
+    ports:
+      - "8082:8081"
     build:
       context: .
       dockerfile: mail-service/Dockerfile
     environment:
-      - MAIL_HOST=sandbox.smtp.mailtrap.io
-      - MAIL_PORT=2525
-      - MAIL_USERNAME=2b7f9587bde829
-      - MAIL_PASSWORD=cf0dce5507b34f
+      - MAIL_HOST=smtp.gmail.com
+      - MAIL_PORT=587
+      - MAIL_USERNAME=beastmode1642@gmail.com
+      - MAIL_PASSWORD=uxlluhpvlcjekrys
       - MAIL_PROPERTIES_MAIL_SMTP_AUTH=true
       - MAIL_PROPERTIES_MAIL_SMTP_STARTTLS_ENABLE=true
       - SPRING_RABBITMQ_HOST=rabbitmq
+      - USER_SERVICE_URL=http://user-service:8080
+      - CONTENT_SERVICE_URL=http://content-service:8081
     depends_on:
       rabbitmq:
         condition: service_healthy

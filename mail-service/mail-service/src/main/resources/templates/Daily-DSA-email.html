@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily DSA Insight</title>
+</head>
+<body style="font-family: Arial, sans-serif; background-color: #f4f7f6; margin: 0; padding: 20px;">
+
+<!-- Wrapper -->
+<table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="background-color: #f4f7f6; padding: 20px;">
+    <tr>
+        <td align="center">
+
+            <!-- Main Container -->
+            <table role="presentation" width="600" cellspacing="0" cellpadding="30" border="0" style="background-color: #ffffff; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+
+                <!-- Header -->
+                <tr>
+                    <td style="border-bottom: 2px solid #3498db;">
+                        <div style="font-size: 12px; color: #7f8c8d; text-transform: uppercase; letter-spacing: 1px;" th:text="'Concept #' + ${conceptNo}">Concept #001</div>
+                        <h1 style="color: #2c3e50; font-size: 24px; margin: 5px 0;">Daily DSA Insight</h1>
+                    </td>
+                </tr>
+
+                <!-- Personal Greeting -->
+                <tr>
+                    <td style="padding-top: 20px; padding-bottom: 0;">
+                        <p style="color: #333; font-size: 16px;">Hi <strong th:text="${userName}">Student</strong>,</p>
+                        <p style="color: #333; font-size: 16px;">Here is today's technical breakdown for <strong><span th:text="${concept}">Concept Name</span></strong>:</p>
+                    </td>
+                </tr>
+
+                <!-- Theory Section -->
+                <tr>
+                    <td style="padding-top: 10px;">
+                        <h2 style="color: #3498db; font-size: 18px; margin: 0 0 10px 0;">Theory</h2>
+                        <p style="color: #555; line-height: 1.6; margin: 0;" th:text="${theory}">Explanation goes here...</p>
+                    </td>
+                </tr>
+
+                <!-- Code Block -->
+                <tr>
+                    <td>
+                        <h2 style="color: #3498db; font-size: 18px; margin: 0 0 10px 0;">Implementation</h2>
+                        <pre style="background-color: #282c34; color: #61dafb; padding: 15px; border-radius: 5px; overflow-x: auto; font-family: 'Courier New', Courier, monospace; margin: 0;" th:text="${code}">// Code snippet</pre>
+                    </td>
+                </tr>
+
+                <!-- Example Section -->
+                <tr>
+                <td>
+                    <h2 style="color: #3498db; font-size: 18px; margin: 0 0 10px 0;">Quick Example</h2>
+                    <div style="background-color: #fdf2e9; padding: 15px; border-left: 4px solid #e67e22; border-radius: 4px;">
+                        <p style="color: #555; margin: 0;">
+                            <a th:href="${example}" target="_blank" style="color: #e67e22; font-weight: bold; text-decoration: underline;">
+                                Solve this problem on LeetCode
+                            </a>
+                        </p>
+                    </div>
+                </td>
+            </tr>
+
+                <!-- CTA Button -->
+                <tr>
+                    <td align="center" style="padding-top: 30px;">
+                        <a href="https://your-dsa-platform.com" style="background-color: #3498db; color: #ffffff; padding: 12px 25px; text-decoration: none; border-radius: 5px; font-weight: bold;">Practice on Platform</a>
+                    </td>
+                </tr>
+
+                <!-- Footer -->
+                <tr>
+                    <td style="border-top: 1px solid #eeeeee; padding-top: 30px;">
+                        <p style="font-size: 12px; color: #999; text-align: center;">
+                            You are receiving this because you subscribed to the Daily DSA newsletter.
+                            <br>
+                            <a th:href="@{'http://localhost:8080/api/users/unsubscribe?email=' + ${userEmail}}">
+                                Click here to unsubscribe
+                            </a>
+                        </p>
+                    </td>
+                </tr>
+            </table>
+
+        </td>
+    </tr>
+</table>
+</body>
+</html>

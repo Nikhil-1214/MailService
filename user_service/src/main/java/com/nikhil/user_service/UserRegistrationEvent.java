@@ -9,5 +9,5 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class UserRegistrationEvent {
     private String userEmail;
-    private String contentId; // Just the ID, not the whole theory
+    private String userName;
 }

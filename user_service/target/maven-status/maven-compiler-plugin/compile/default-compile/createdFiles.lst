@@ -1,6 +1,0 @@
-com\nikhil\user_service\UserDTO.class
-com\nikhil\user_service\UserServiceApplication.class
-com\nikhil\user_service\repository\User_repository.class
-com\nikhil\user_service\model\User.class
-com\nikhil\user_service\contoller\User_controller.class
-com\nikhil\user_service\service\User_service.class

@@ -1,11 +1,11 @@
 server:
   port: 8081
-
 spring:
   application:
-    name: content_service
+    name: content-service
   datasource:
-    url: jdbc:mysql://mysql-content:3306/content_db
+    # FIX: Point to localhost and use port 3309!
+    url: jdbc:mysql://localhost:3309/content_db
     username: root
     password: nikhil
     driver-class-name: com.mysql.cj.jdbc.Driver

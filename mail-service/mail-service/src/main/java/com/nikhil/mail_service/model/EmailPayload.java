@@ -4,11 +4,11 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.io.Serializable;
-@AllArgsConstructor
 @Data
+@AllArgsConstructor
 @NoArgsConstructor
-public class EmailPayload implements Serializable {
+public class EmailPayload {
     private String userEmail;
-    private Content content;
+    private String userName;
+    private ContentDTO content;   // the full DSA concept fetched from content-service
 }

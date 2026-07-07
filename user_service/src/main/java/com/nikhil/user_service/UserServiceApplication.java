@@ -6,7 +6,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-@ComponentScan(basePackages = {"com.nikhil.user_service"})
 @EnableRabbit// Force scan everything in your user_service folder
 public class UserServiceApplication {
 

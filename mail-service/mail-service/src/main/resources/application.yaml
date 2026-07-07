@@ -1,12 +1,35 @@
+server:
+  port: 8081
 spring:
   application:
     name: mail-service
 
+  # Wired up to accept your Docker Compose environment variables
   mail:
-    host: sandbox.smtp.mailtrap.io
-    port: 2525
-    username: 2b7f9587bde829
-    password : cf0dce5507b34f
-  rabbitmq:
-    host: rabbitmq
+    host: ${MAIL_HOST:sandbox.smtp.mailtrap.io}
+    port: ${MAIL_PORT:2525}
+    username: ${MAIL_USERNAME:...}
+    password: ${MAIL_PASSWORD:...}
+    properties:
+      mail:
+        smtp:
+          auth: ${MAIL_PROPERTIES_MAIL_SMTP_AUTH:true}
+          starttls:
+            enable: ${MAIL_PROPERTIES_MAIL_SMTP_STARTTLS_ENABLE:true}
 
+rabbitmq:
+  exchange:
+    user: user-exchange
+    newsletter: newsletter-exchange
+  queue:
+    email: emailQueue
+    newsletter: newsletterQueue
+  routing-key:
+    user: user.registered
+    newsletter: newsletter.send
+
+newsletter:
+   cron: "0 0 8 * * ?"
+services:
+  user-service: ${USER_SERVICE_URL:http://localhost:8080}
+  content-service: ${CONTENT_SERVICE_URL:http://localhost:8081}
