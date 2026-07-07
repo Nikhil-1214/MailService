@@ -4,7 +4,7 @@ A comprehensive microservices-based application for managing Data Structures (DS
 
 ## 📋 Table of Contents
 
-- [What You're Building](#what-youre-building)
+- [What I have Build](#what-i-have-build)
 - [Project Overview](#project-overview)
 - [Architecture](#architecture)
 - [Technologies Used](#technologies-used)
@@ -12,7 +12,7 @@ A comprehensive microservices-based application for managing Data Structures (DS
 - [API Endpoints](#api-endpoints)
 - [Project Structure](#project-structure)
 
-## 🎓 What I have Building
+##  What I have Build
 
 This is an **educational platform for learning Data Structures and Algorithms** with intelligent email automation. Here's the vision:
 
@@ -55,7 +55,7 @@ Imagine a user named Nikhil:
 3. **Every Morning at 8 AM**: Nikhil receives an email with a new DSA concept (Monday: Arrays, Tuesday: Linked Lists, etc.)
 4. **Result**: Nikhil learns one concept per day without having to log into the platform
 
-## 🎯 Project Overview
+##  Project Overview
 
 This is a distributed microservices application designed to:
 
@@ -64,7 +64,7 @@ This is a distributed microservices application designed to:
 - **Send Emails**: Asynchronously send personalized emails to users including welcome emails and daily newsletters
 - **Async Communication**: Use RabbitMQ for decoupled, event-driven communication between services ensuring reliability and scalability
 
-## 🏗️ Architecture
+##  Architecture
 
 ```
 ┌─────────────────┐
@@ -104,7 +104,7 @@ This is a distributed microservices application designed to:
 5. **MySQL Databases**: Persistent data storage
 6. **Docker Compose**: Orchestration and deployment
 
-## 💾 Technologies Used
+##  Technologies Used
 
 ### Core Framework
 - **Spring Boot**: 4.1.0
@@ -143,7 +143,7 @@ This is a distributed microservices application designed to:
 - **Mockito**: Mocking framework
 - **Spring Boot Test**: Integration testing
 
-## 🚀 Services
+##  Services
 
 ### 1. User Service
 - **Port**: 8080
@@ -175,7 +175,7 @@ This is a distributed microservices application designed to:
   - RabbitMQ message consumption
   - Gmail SMTP integration
 
-## 📡 API Endpoints
+##  API Endpoints
 
 ### User Service (Port 8080)
 
